@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2386348-62dc-4dbd-bede-6e6e63863030" name="Default Changelist" comment="" />
+    <list default="true" id="e2386348-62dc-4dbd-bede-6e6e63863030" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Task_1A.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gibbs_sampling_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gibbs_sampling_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/liklihood_weighting_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/liklihood_weighting_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/liklihood_weighting_karoline.py" beforeDir="false" afterPath="$PROJECT_DIR$/liklihood_weighting_karoline.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +22,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1SZHBdPkFVyiUDFopCYEnY6KY0c" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -32,7 +44,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Gibbs_sampling_2">
+  <component name="RunManager" selected="Python.Task_1A">
     <configuration name="Gibbs_Sampling" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="advanced_ai" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -75,7 +87,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="likelihood_weighting" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Task_1A" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="advanced_ai" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -87,7 +99,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/likelihood_weighting.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Task_1A.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -140,11 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Gibbs_sampling_2" />
-        <item itemvalue="Python.Gibbs_Sampling" />
-        <item itemvalue="Python.liklihood_weighting_2" />
+        <item itemvalue="Python.Task_1A" />
         <item itemvalue="Python.liklihood_weighting_karoline" />
-        <item itemvalue="Python.likelihood_weighting" />
+        <item itemvalue="Python.Gibbs_sampling_2" />
+        <item itemvalue="Python.liklihood_weighting_2" />
+        <item itemvalue="Python.Gibbs_Sampling" />
       </list>
     </recent_temporary>
   </component>
@@ -160,6 +172,19 @@
       <updated>1571764063894</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -283,6 +308,11 @@
           <url>file://$PROJECT_DIR$/liklihood_weighting_karoline.py</url>
           <line>58</line>
           <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Gibbs_sampling_2.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

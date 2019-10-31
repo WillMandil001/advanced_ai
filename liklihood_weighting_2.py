@@ -5,7 +5,7 @@ from copy import deepcopy
 
 class likelihoodWeighting():
     def __init__(self):
-        self.N = 10000  # number of samples
+        self.N = 100000  # number of samples
         self.psl = ps.PriorSampling("sprinkler")  # Specify which Bayes Net  to use (burglary, sprinkler...)
         self.query_variable = 'R'
         self.evidence_variables = ['+c','+w']  # Must be in order.

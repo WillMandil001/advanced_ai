@@ -5,10 +5,10 @@ import copy
 class likelihoodWeighting():
     def __init__(self):
         ##### USER MAY CHANGE THESE VARIABLES
-        self.N = 10000 #number of samples
+        self.N = 1000 #number of samples
         self.ps = psl.PriorSampling("sprinkler") #specify which network to use (burglary, sprinkler...)
-        self.query_variable = 'R'
-        self.evidence = ['+c','+w']
+        self.query_variable = 'S'
+        self.evidence = ['+c','-w']
         #####
 
     def Sample(self):
