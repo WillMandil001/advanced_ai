@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2386348-62dc-4dbd-bede-6e6e63863030" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Task_1B.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task_1B.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1B.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -309,11 +309,6 @@
           <url>file://$PROJECT_DIR$/Gibbs_sampling_2.py</url>
           <line>69</line>
           <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Task_1B.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
