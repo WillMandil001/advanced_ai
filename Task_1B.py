@@ -5,7 +5,7 @@ from random import random
 from numpy import prod
 import itertools
 
-class task_1b:
+class BayesianNetwork:
     def __init__(self):
         self.LUCAS0 = {}
         self.LUCAS0["order"] = ["S", "YF", "A", "PP", "G", "AD", "B", "CA", "F", "AL", "C", "LC"]
@@ -24,8 +24,8 @@ class task_1b:
                                  "LC": ["G", "S"]}
         self.create_cpts()
         self.parameter_learning()
-        for i in self.LUCAS0["order_param_learn"]:
-            print(self.LUCAS0[i])
+        # for i in self.LUCAS0["order_param_learn"]:
+        #     print(self.LUCAS0[i])
 
     def create_cpts(self):
         for variable in self.LUCAS0["order"]:
@@ -51,14 +51,23 @@ class task_1b:
                         self.LUCAS0[variable][prob_lookup] = prob_lookup_list
 
     def parameter_learning(self):
-        f = open("lucas0_text/lucas0_test.data", "r")
+        f = open("lucas0_text/lucas0_train.data", "r")
         self.LUCAS0["order_param_learn"] = {}
         for variable in self.LUCAS0["order"]:
-            if variable != "LC":
-                self.LUCAS0["order_param_learn"][variable] = 0
+            self.LUCAS0["order_param_learn"][variable] = 0
 
-        for line in f:  # assign current line to "order_param_learn"
+        # find data for LC:
+        f2 = open("lucas0_text/lucas0_train.targets", "r")
+        LC_data = []
+        for line in f2:
             line = line.replace(' ', '').replace('\n', '')
+            if line == "-1": line = "0"
+            LC_data.append(line)
+
+        for line, LC_state in zip(f, LC_data):  # assign current line to "order_param_learn"
+            line = line.replace(' ', '').replace('\n', '')
+
+            self.LUCAS0["order_param_learn"]["LC"] = LC_state
             for i in range(0, len(line)):
                 current_variable = self.LUCAS0["order"][i]
                 self.LUCAS0["order_param_learn"][current_variable] = line[i]
@@ -82,24 +91,69 @@ class task_1b:
                         except:
                             pass
 
-        for i in self.LUCAS0["order_param_learn"]:  # Normalise data:
-            sum= 0
+        # Normalise the data:
+        for i in self.LUCAS0["order_param_learn"]:
+            sum = 0
+            indicator = 0
             for j in self.LUCAS0[i]:
-                try:
-                    sum += self.LUCAS0[i][j][-1]
-                except:
+                try:  # 1. For no parents:
                     sum += self.LUCAS0[i][j]
-            for j in self.LUCAS0[i]:
-                if sum == 0:
-                    self.LUCAS0[i][j][-1] = 1 / len(self.LUCAS0[i])
-                else:
-                    try:
-                        self.LUCAS0[i][j][-1] = float(self.LUCAS0[i][j][-1])
-                        self.LUCAS0[i][j][-1] = self.LUCAS0[i][j][-1] / sum
-                    except:
-                        self.LUCAS0[i][j] = float(self.LUCAS0[i][j])
-                        self.LUCAS0[i][j] = self.LUCAS0[i][j] / sum
+                    indicator = 1
+                except:  # 2. if parents:
+                    for other_cpt_prob in self.LUCAS0[i]:
+                        if other_cpt_prob[0][0] == "+":
+                            if self.LUCAS0[i][other_cpt_prob][1:-1] == self.LUCAS0[i][j][1:-1] and self.LUCAS0[i][other_cpt_prob][0] != self.LUCAS0[i][j][0]:
+                                sum = float(self.LUCAS0[i][other_cpt_prob][-1]) + float(self.LUCAS0[i][j][-1])
+                                self.LUCAS0[i][other_cpt_prob][-1] = self.LUCAS0[i][other_cpt_prob][-1] / sum
+                                self.LUCAS0[i][j][-1] = self.LUCAS0[i][j][-1] / sum
+                                break
+            if indicator == 1:
+                for j in self.LUCAS0[i]:
+                    self.LUCAS0[i][j] = float(self.LUCAS0[i][j])
+                    self.LUCAS0[i][j] = self.LUCAS0[i][j] / sum
+
+
+class RejectionSample():
+    def __init__(self, LUCAS0):
+        self.CPTs = LUCAS0
+        self.CPTs["order"] = ["YF", "A", "PP", "S", "G", "LC", "AD", "B", "AL", "C", "F", "CA"]  # Re-order for sampling
+
+    def sampleVariable(self, CPT, conditional):
+        sampledValue = None
+        randnumber = random()
+        try:
+            value1 = CPT["+" + conditional][-1]
+            value2 = CPT["-" + conditional][-1]
+        except:
+            value1 = CPT["+" + conditional]
+            value2 = CPT["-" + conditional]
+        if randnumber <= value1:
+            sampledValue = "+" + conditional
+        else:
+            sampledValue = "-" + conditional
+        return sampledValue.split("|")[0]
+
+    def sampleVariables(self):
+        event = []
+        sampledVars = {}
+        for variable in self.CPTs["order"]:
+            evidence = ""
+            conditional = ""
+            parents = self.CPTs["parents"][variable]
+            if parents[0] == None:
+                conditional = variable.lower()
+            else:
+                for parent in parents:
+                    evidence += sampledVars[parent]
+                conditional = variable.lower() + "|" + evidence
+            sampledValue = self.sampleVariable(self.CPTs[variable], conditional)
+            event.append(sampledValue)
+            sampledVars[variable] = sampledValue
+        return event
 
 
 if __name__ == "__main__":
-    task = task_1b()
+    task = BayesianNetwork()
+    sampling = RejectionSample(task.LUCAS0)
+    for i in range(0, 10):
+        print("esamplinvent", sampling.sampleVariables())
