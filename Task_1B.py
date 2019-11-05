@@ -5,13 +5,14 @@ from random import random
 from numpy import prod
 import itertools
 
+
 class BayesianNetwork:
     def __init__(self):
         self.LUCAS0 = {}
         self.LUCAS0["order"] = ["S", "YF", "A", "PP", "G", "AD", "B", "CA", "F", "AL", "C", "LC"]
         self.LUCAS0["order_param_learn"] = {"S": 0, "YF": 0, "A": 0, "PP": 0, "G": 0, "AD": 0, "B": 0, "CA": 0, "F": 0, "AL": 0, "C": 0, "LC": 0}
-        self.LUCAS0["parents"] ={"S":  ["YF", "A", "PP"],
-                                 "YF": [None],
+        self.LUCAS0["parents"] ={"S":  ["A", "PP"],
+                                 "YF": ["S"],
                                  "A":  [None],
                                  "PP": [None],
                                  "G":  [None],
@@ -24,8 +25,6 @@ class BayesianNetwork:
                                  "LC": ["G", "S"]}
         self.create_cpts()
         self.parameter_learning()
-        # for i in self.LUCAS0["order_param_learn"]:
-        #     print(self.LUCAS0[i])
 
     def create_cpts(self):
         for variable in self.LUCAS0["order"]:
@@ -51,23 +50,15 @@ class BayesianNetwork:
                         self.LUCAS0[variable][prob_lookup] = prob_lookup_list
 
     def parameter_learning(self):
-        f = open("lucas0_text/lucas0_train.data", "r")
+        f = open("lucas0_train.csv", "r")
+        content = f.readlines()
+        content = content[1:]
         self.LUCAS0["order_param_learn"] = {}
         for variable in self.LUCAS0["order"]:
             self.LUCAS0["order_param_learn"][variable] = 0
 
-        # find data for LC:
-        f2 = open("lucas0_text/lucas0_train.targets", "r")
-        LC_data = []
-        for line in f2:
-            line = line.replace(' ', '').replace('\n', '')
-            if line == "-1": line = "0"
-            LC_data.append(line)
-
-        for line, LC_state in zip(f, LC_data):  # assign current line to "order_param_learn"
-            line = line.replace(' ', '').replace('\n', '')
-
-            self.LUCAS0["order_param_learn"]["LC"] = LC_state
+        for line in content:  # assign current line to "order_param_learn"
+            line = line.replace(',', '').replace('\n', '')
             for i in range(0, len(line)):
                 current_variable = self.LUCAS0["order"][i]
                 self.LUCAS0["order_param_learn"][current_variable] = line[i]
@@ -116,18 +107,18 @@ class BayesianNetwork:
 class RejectionSample():
     def __init__(self, LUCAS0):
         self.CPTs = LUCAS0
-        self.CPTs["order"] = ["YF", "A", "PP", "S", "G", "LC", "AD", "B", "AL", "C", "F", "CA"]  # Re-order for sampling
+        self.CPTs["order"] = ["A", "PP", "S", "YF", "G", "LC", "AD", "B", "AL", "C", "F", "CA"]  # Re-order for sampling
+        for i in self.CPTs["order"]:
+            print(self.CPTs[i])
 
     def sampleVariable(self, CPT, conditional):
         sampledValue = None
         randnumber = random()
         try:
             value1 = CPT["+" + conditional][-1]
-            value2 = CPT["-" + conditional][-1]
         except:
             value1 = CPT["+" + conditional]
-            value2 = CPT["-" + conditional]
-        if randnumber <= value1:
+        if randnumber < value1:
             sampledValue = "+" + conditional
         else:
             sampledValue = "-" + conditional
@@ -151,9 +142,29 @@ class RejectionSample():
             sampledVars[variable] = sampledValue
         return event
 
+    def rejectionSampling(self, number_of_samples, query_event):
+        prob_true = 0
+        prob_false = 0
+        query_variable = query_event.split("|")[0]
+        evidence_variables = query_event.split("|")[1].split(",")
+
+        for sample in range(0, number_of_samples):
+            event = sampling.sampleVariables()
+            if all(elem in event for elem in evidence_variables) == True:
+                if query_variable in event:
+                    prob_true += 1
+                else:
+                    prob_false += 1
+        print("prob_true = ", prob_true, "prob_false = ", prob_false)
+
+        # Normalise:
+        normalised_prob = [(prob_true / (prob_true + prob_false)), (prob_false / (prob_true + prob_false))]
+        return normalised_prob, query_event
+
 
 if __name__ == "__main__":
     task = BayesianNetwork()
     sampling = RejectionSample(task.LUCAS0)
-    for i in range(0, 10):
-        print("esamplinvent", sampling.sampleVariables())
+    normalised_prob, query_event = sampling.rejectionSampling(number_of_samples= 100000, query_event = "+s|+c,+f")
+    print(query_event[1:], " = ", normalised_prob)
+
