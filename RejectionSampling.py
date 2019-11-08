@@ -104,7 +104,7 @@ class PriorSampling:
 			count_possible_event_list.append(sample)
 
 		count_possible_event_list[:] = (value for value in count_possible_event_list if value != 'rejected')		
-		print count_possible_event_list
+		print(count_possible_event_list)
 
 		for j in range(0, len(count_possible_event_list)):
 			if count_possible_event_list[j][index_to_find] == True:
@@ -113,11 +113,11 @@ class PriorSampling:
 				prob_false +=1
 
 		probability_estimate = [prob_true, prob_false]
-		print probability_estimate
+		print(probability_estimate)
 		probability_estimate_normalised = [(float(prob_true) / (float(prob_true) + float(prob_false))), (float(prob_false) / (float(prob_true) + float(prob_false)))]
-		print "Normalised probability estimate = ", probability_estimate_normalised
+		print("Normalised probability estimate = ", probability_estimate_normalised)
 
 
 if __name__ == "__main__":
 	ps=PriorSampling("sprinkler")
-	ps.rejectionSampling(number_of_samples=100000, event = [True, True, "find", "N/A"]) #  P(rain|sprinkler = true) use "N/A" and "find" = query variabel and true/false  
+	ps.rejectionSampling(number_of_samples=100000, event = [True, True, "find", "N/A"]) #  P(rain|sprinkler = true) use "N/A" and "find" = query variabel and true/false

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2386348-62dc-4dbd-bede-6e6e63863030" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Task_2A.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RejectionSampling.py" beforeDir="false" afterPath="$PROJECT_DIR$/RejectionSampling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task_1B.py" beforeDir="false" afterPath="$PROJECT_DIR$/Task_1B.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,8 +42,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Task_1B">
-    <configuration name="Gibbs_sampling_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Task_2A">
+    <configuration name="RejectionSampling" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="advanced_ai" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -53,7 +55,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Gibbs_sampling_2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RejectionSampling.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -104,7 +106,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="liklihood_weighting_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Task_2A" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="advanced_ai" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -116,7 +118,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/liklihood_weighting_2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Task_2A.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -148,11 +150,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Task_2A" />
         <item itemvalue="Python.Task_1B" />
+        <item itemvalue="Python.RejectionSampling" />
         <item itemvalue="Python.Task_1A" />
         <item itemvalue="Python.liklihood_weighting_karoline" />
-        <item itemvalue="Python.Gibbs_sampling_2" />
-        <item itemvalue="Python.liklihood_weighting_2" />
       </list>
     </recent_temporary>
   </component>
